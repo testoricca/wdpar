@@ -62,7 +62,8 @@ st_erase_overlaps <- function(x, verbose = FALSE) {
       ### run union
       u <- sf::st_union(
         sf::st_set_precision(
-          suppressWarnings(sf::st_collection_extract(sf::st_buffer(o[ovr], 0))),
+          sf::st_make_valid(
+            suppressWarnings(sf::st_collection_extract(sf::st_buffer(o[ovr], 0)))),
           precision
         )
       )
